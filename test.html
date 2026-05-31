@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chaudhari Empire Developers – Panvel</title>
+<title>Scarlet Builders & Developers – Navi Mumbai</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E8D49A;
-    --gold-dark: #8B6914;
-    --gold-deep: #6B4F0A;
+    --scarlet: #C0392B;
+    --scarlet-light: #E8A09A;
+    --scarlet-dark: #922B21;
+    --scarlet-deep: #6E1A14;
+    --scarlet-mid: #A93226;
     --ink: #12100D;
-    --cream: #FAF6EF;
-    --warm-white: #FDFAF5;
-    --stone: #7C6E68;
-    --stone-light: #B8AFA6;
-    --border: rgba(201,168,76,0.28);
-    --border-light: rgba(201,168,76,0.15);
+    --cream: #FAF5F4;
+    --warm-white: #FDFAF9;
+    --stone: #7C6B68;
+    --stone-light: #B8AFAD;
+    --border: rgba(192,57,43,0.25);
+    --border-light: rgba(192,57,43,0.12);
   }
 
   html { scroll-behavior: smooth; }
@@ -40,7 +41,7 @@
     border-bottom: 1px solid transparent;
   }
   nav.scrolled {
-    background: rgba(253,250,245,0.96);
+    background: rgba(253,250,249,0.96);
     backdrop-filter: blur(14px);
     border-bottom-color: var(--border-light);
   }
@@ -53,27 +54,28 @@
   .nav-logo-sub {
     display: block;
     font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold-light); font-family: 'Jost', sans-serif; font-weight: 400;
+    color: var(--scarlet-light); font-family: 'Jost', sans-serif; font-weight: 400;
     margin-top: 1px; transition: color 0.4s;
   }
   nav.scrolled .nav-logo { color: var(--ink); }
   nav.scrolled .nav-logo-sub { color: var(--stone); }
-  .nav-logo .empire { color: var(--gold); }
+  .nav-logo .scarlet { color: #E8A09A; }
+  nav.scrolled .nav-logo .scarlet { color: var(--scarlet); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
     font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
     color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s;
   }
   nav.scrolled .nav-links a { color: var(--stone); }
-  .nav-links a:hover { color: var(--gold); }
-  nav.scrolled .nav-links a:hover { color: var(--gold-deep); }
+  .nav-links a:hover { color: #E8A09A; }
+  nav.scrolled .nav-links a:hover { color: var(--scarlet-deep); }
   .nav-cta {
     font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
     border: 1px solid rgba(255,255,255,0.6); color: #fff;
     padding: 0.6rem 1.5rem; text-decoration: none; transition: all 0.3s;
   }
-  nav.scrolled .nav-cta { border-color: var(--gold-deep); color: var(--gold-deep); }
-  .nav-cta:hover { background: var(--gold-deep); border-color: var(--gold-deep); color: #fff !important; }
+  nav.scrolled .nav-cta { border-color: var(--scarlet-deep); color: var(--scarlet-deep); }
+  .nav-cta:hover { background: var(--scarlet-deep); border-color: var(--scarlet-deep); color: #fff !important; }
 
   /* HERO */
   .hero {
@@ -86,11 +88,16 @@
   }
   .hero-overlay {
     position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(to bottom, rgba(10,4,4,0.45) 0%, rgba(10,4,4,0.62) 50%, rgba(10,4,4,0.88) 100%);
+    background: linear-gradient(to bottom, rgba(10,2,2,0.48) 0%, rgba(10,2,2,0.64) 50%, rgba(10,2,2,0.90) 100%);
+  }
+  /* Subtle scarlet vignette on sides */
+  .hero-vignette {
+    position: absolute; inset: 0; z-index: 1;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(110,26,20,0.25) 100%);
   }
   .hero-corner {
     position: absolute; z-index: 2; width: 80px; height: 80px;
-    border-color: rgba(201,168,76,0.55); border-style: solid;
+    border-color: rgba(192,57,43,0.55); border-style: solid;
   }
   .hero-corner.tl { top: 6rem; left: 4rem; border-width: 1px 0 0 1px; }
   .hero-corner.tr { top: 6rem; right: 4rem; border-width: 1px 1px 0 0; }
@@ -103,7 +110,7 @@
   }
   .hero-pre {
     font-size: 0.62rem; letter-spacing: 0.36em; text-transform: uppercase;
-    color: var(--gold-light); font-weight: 400; margin-bottom: 1rem;
+    color: var(--scarlet-light); font-weight: 400; margin-bottom: 1rem;
     text-shadow: 0 1px 12px rgba(0,0,0,0.5);
   }
   .hero-brand {
@@ -113,12 +120,12 @@
     letter-spacing: 0.14em; text-transform: uppercase;
     text-shadow: 0 2px 40px rgba(0,0,0,0.9), 0 1px 8px rgba(0,0,0,0.85);
   }
-  .hero-brand .empire { color: var(--gold); }
+  .hero-brand .scarlet { color: #E8908A; }
   .hero-ornament {
     display: flex; align-items: center; gap: 1rem; margin: 1.4rem 0;
   }
-  .hero-ornament-line { width: 3.5rem; height: 1px; background: var(--gold); opacity: 0.7; }
-  .hero-ornament-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+  .hero-ornament-line { width: 3.5rem; height: 1px; background: var(--scarlet); opacity: 0.7; }
+  .hero-ornament-diamond { width: 6px; height: 6px; background: var(--scarlet); transform: rotate(45deg); }
   .hero-brand-tag {
     font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase;
     color: rgba(255,255,255,0.5); font-weight: 400;
@@ -126,12 +133,12 @@
   }
   .hero-stats {
     display: flex; gap: 3rem; margin-top: 3rem;
-    padding-top: 2rem; border-top: 1px solid rgba(201,168,76,0.25);
+    padding-top: 2rem; border-top: 1px solid rgba(192,57,43,0.3);
   }
   .hero-stat { text-align: center; }
   .hero-stat-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem; font-weight: 500; color: var(--gold); line-height: 1;
+    font-size: 2.2rem; font-weight: 500; color: var(--scarlet-light); line-height: 1;
   }
   .hero-stat-label {
     font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
@@ -140,7 +147,7 @@
 
   /* MARQUEE */
   .marquee-wrap {
-    background: var(--gold-deep); overflow: hidden; padding: 0.9rem 0;
+    background: var(--scarlet-deep); overflow: hidden; padding: 0.9rem 0;
     display: flex; align-items: center;
   }
   .marquee-track {
@@ -149,30 +156,30 @@
   }
   .marquee-item {
     font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
-    color: var(--gold-light); padding: 0 2.5rem;
+    color: var(--scarlet-light); padding: 0 2.5rem;
     display: flex; align-items: center; gap: 1.5rem;
   }
-  .marquee-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .marquee-dot { width: 4px; height: 4px; background: var(--scarlet-light); border-radius: 50%; flex-shrink: 0; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* SHARED */
   .section-tag {
     font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
-    color: var(--gold-deep); display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem;
+    color: var(--scarlet-deep); display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem;
   }
-  .section-tag::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); }
+  .section-tag::before { content: ''; width: 1.5rem; height: 1px; background: var(--scarlet); }
   .section-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 3.2vw, 3.2rem);
     font-weight: 500; line-height: 1.16; color: var(--ink);
   }
-  .section-title em { font-style: italic; color: var(--gold-deep); }
+  .section-title em { font-style: italic; color: var(--scarlet-deep); }
   .btn-ghost {
     color: var(--stone); font-size: 0.78rem; letter-spacing: 0.08em; font-weight: 500;
     text-decoration: none; border-bottom: 1px solid var(--stone-light);
     padding-bottom: 2px; transition: all 0.2s;
   }
-  .btn-ghost:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+  .btn-ghost:hover { color: var(--scarlet-deep); border-color: var(--scarlet-deep); }
 
   /* ABOUT */
   .about {
@@ -202,25 +209,24 @@
   .about-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .about-img-line {
     position: absolute; top: -1.5rem; right: -1.5rem;
-    width: 100px; height: 100px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold);
+    width: 100px; height: 100px; border-top: 2px solid var(--scarlet); border-right: 2px solid var(--scarlet);
   }
   .about-img-line-2 {
     position: absolute; bottom: -1.5rem; left: -1.5rem;
-    width: 60px; height: 60px; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold);
+    width: 60px; height: 60px; border-bottom: 1px solid var(--scarlet); border-left: 1px solid var(--scarlet);
   }
 
-  /* ── SERVICES — full redesign ── */
+  /* SERVICES */
   .services {
     background: var(--ink);
     padding: 6rem 4rem;
     position: relative;
     overflow: hidden;
   }
-
-  .services .section-tag { color: var(--gold-light); }
-  .services .section-tag::before { background: var(--gold); }
+  .services .section-tag { color: var(--scarlet-light); }
+  .services .section-tag::before { background: var(--scarlet); }
   .services .section-title { color: #fff; }
-  .services .section-title em { color: var(--gold); }
+  .services .section-title em { color: var(--scarlet-light); }
   .services-header {
     display: flex; justify-content: space-between; align-items: flex-end;
     margin-bottom: 4rem;
@@ -231,7 +237,7 @@
   }
   .service-card {
     background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(201,168,76,0.2);
+    border: 1px solid rgba(192,57,43,0.2);
     padding: 2.8rem 2.2rem;
     position: relative; overflow: hidden;
     transition: background 0.35s, border-color 0.35s, transform 0.35s;
@@ -241,41 +247,40 @@
     content: '';
     position: absolute; bottom: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    background: linear-gradient(90deg, transparent, var(--scarlet), transparent);
     opacity: 0; transition: opacity 0.35s;
   }
   .service-card:hover {
-    background: rgba(201,168,76,0.07);
-    border-color: rgba(201,168,76,0.5);
+    background: rgba(192,57,43,0.07);
+    border-color: rgba(192,57,43,0.5);
     transform: translateY(-6px);
   }
   .service-card:hover::after { opacity: 1; }
   .service-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 4.5rem; font-weight: 400;
-    color: rgba(201,168,76,0.12); line-height: 1;
+    color: rgba(192,57,43,0.12); line-height: 1;
     position: absolute; top: 1.2rem; right: 1.5rem;
     transition: color 0.35s;
   }
-  .service-card:hover .service-num { color: rgba(201,168,76,0.22); }
-
+  .service-card:hover .service-num { color: rgba(192,57,43,0.22); }
   .service-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.55rem; font-weight: 500; color: #fff;
     margin-bottom: 1rem; line-height: 1.2;
   }
   .service-desc {
-    font-size: 0.85rem; line-height: 1.85; color: rgba(250,246,239,0.55); font-weight: 400;
+    font-size: 0.85rem; line-height: 1.85; color: rgba(250,245,244,0.55); font-weight: 400;
   }
   .service-link {
     display: inline-flex; align-items: center; gap: 0.5rem;
     margin-top: 1.8rem;
     font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
-    color: var(--gold); text-decoration: none;
-    padding-bottom: 3px; border-bottom: 1px solid rgba(201,168,76,0.3);
+    color: var(--scarlet-light); text-decoration: none;
+    padding-bottom: 3px; border-bottom: 1px solid rgba(192,57,43,0.3);
     transition: border-color 0.2s;
   }
-  .service-link:hover { border-color: var(--gold); }
+  .service-link:hover { border-color: var(--scarlet-light); }
   .service-link-arrow { transition: transform 0.2s; }
   .service-link:hover .service-link-arrow { transform: translateX(4px); }
 
@@ -297,7 +302,7 @@
   .listing-card:hover .listing-img img { transform: scale(1.04); }
   .listing-tag-chip {
     position: absolute; top: 1rem; left: 1rem;
-    background: var(--gold-deep); color: #fff;
+    background: var(--scarlet-deep); color: #fff;
     font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
     padding: 0.32rem 0.65rem;
   }
@@ -315,7 +320,7 @@
 
   /* WHY CHOOSE US STRIP */
   .why-strip {
-    background: var(--gold-deep);
+    background: var(--scarlet-deep);
     padding: 4rem;
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 0;
@@ -329,10 +334,10 @@
   .why-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
   .why-label {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem; font-weight: 500; color: var(--gold-light); line-height: 1.2;
+    font-size: 1.25rem; font-weight: 500; color: var(--scarlet-light); line-height: 1.2;
   }
   .why-desc {
-    font-size: 0.78rem; color: rgba(232,212,154,0.6); line-height: 1.6;
+    font-size: 0.78rem; color: rgba(232,160,154,0.65); line-height: 1.6;
   }
 
   /* TESTIMONIALS */
@@ -351,11 +356,11 @@
   .testi-card::before {
     content: '';
     position: absolute; top: 0; left: 2rem; right: 2rem; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    background: linear-gradient(90deg, transparent, var(--scarlet), transparent);
     opacity: 0; transition: opacity 0.3s;
   }
   .testi-card:hover::before { opacity: 1; }
-  .testi-stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; margin-bottom: 1rem; }
+  .testi-stars { color: var(--scarlet); font-size: 0.75rem; letter-spacing: 3px; margin-bottom: 1rem; }
   .testi-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.08rem; line-height: 1.8;
@@ -365,9 +370,9 @@
   .testi-author { display: flex; align-items: center; gap: 0.8rem; }
   .testi-avatar {
     width: 38px; height: 38px; border-radius: 50%;
-    background: var(--gold-deep);
+    background: var(--scarlet-deep);
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.68rem; font-weight: 600; color: var(--gold-light); flex-shrink: 0;
+    font-size: 0.68rem; font-weight: 600; color: var(--scarlet-light); flex-shrink: 0;
   }
   .testi-name { font-size: 0.8rem; font-weight: 600; color: var(--ink); letter-spacing: 0.05em; }
   .testi-role { font-size: 0.7rem; color: var(--stone-light); margin-top: 1px; }
@@ -378,7 +383,7 @@
   .testi-meta-item { text-align: center; }
   .testi-meta-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem; font-weight: 400; color: var(--gold-deep); line-height: 1;
+    font-size: 3rem; font-weight: 400; color: var(--scarlet-deep); line-height: 1;
   }
   .testi-meta-label {
     font-size: 0.7rem; color: var(--stone-light); letter-spacing: 0.12em;
@@ -399,7 +404,7 @@
   .contact-detail-icon {
     width: 2.4rem; height: 2.4rem; border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
-    color: var(--gold-deep); font-size: 0.95rem; flex-shrink: 0;
+    color: var(--scarlet-deep); font-size: 0.95rem; flex-shrink: 0;
   }
   .contact-detail-label {
     font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
@@ -407,12 +412,12 @@
   }
   .contact-detail-val { font-size: 0.9rem; color: var(--ink); line-height: 1.6; }
   .contact-detail-val a { color: var(--ink); text-decoration: none; }
-  .contact-detail-val a:hover { color: var(--gold-deep); }
+  .contact-detail-val a:hover { color: var(--scarlet-deep); }
   .hours-badge {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(201,168,76,0.08); border: 1px solid var(--border);
+    background: rgba(192,57,43,0.07); border: 1px solid var(--border);
     padding: 0.35rem 0.75rem; margin-top: 0.5rem;
-    font-size: 0.68rem; color: var(--gold-dark); letter-spacing: 0.06em; font-weight: 500;
+    font-size: 0.68rem; color: var(--scarlet-dark); letter-spacing: 0.06em; font-weight: 500;
   }
   .hours-dot { width: 6px; height: 6px; background: #4CAF50; border-radius: 50%; }
   .contact-form { background: var(--warm-white); padding: 2.5rem; border: 1px solid var(--border-light); }
@@ -431,17 +436,18 @@
     padding: 0.75rem 1rem;
     font-family: 'Jost', sans-serif; font-size: 0.88rem; color: var(--ink);
     outline: none; width: 100%; transition: border-color 0.2s;
+    appearance: none; -webkit-appearance: none;
   }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--scarlet); }
   .form-group textarea { resize: vertical; min-height: 100px; }
   .form-submit {
-    width: 100%; background: var(--gold-deep); color: var(--warm-white);
+    width: 100%; background: var(--scarlet-deep); color: var(--warm-white);
     border: none; padding: 1.1rem; cursor: pointer;
     font-family: 'Jost', sans-serif;
     font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
     transition: background 0.3s;
   }
-  .form-submit:hover { background: var(--gold-dark); }
+  .form-submit:hover { background: var(--scarlet-dark); }
   .form-submit:disabled { opacity: 0.65; cursor: not-allowed; }
   .req { color: #c0392b; margin-left: 2px; }
   .input-error { border-color: #c0392b !important; }
@@ -454,14 +460,14 @@
   /* FOOTER */
   footer {
     background: var(--ink); padding: 3rem 4rem;
-    border-top: 1px solid rgba(201,168,76,0.25);
+    border-top: 1px solid rgba(192,57,43,0.25);
     display: flex; justify-content: space-between; align-items: center;
   }
   .footer-logo {
     font-family: 'Cinzel', serif;
     font-size: 1.2rem; font-weight: 600; color: var(--cream); letter-spacing: 0.08em; line-height: 1.3;
   }
-  .footer-logo .empire { color: var(--gold); }
+  .footer-logo .scarlet { color: var(--scarlet-light); }
   .footer-logo-sub {
     display: block; font-size: 0.5rem; letter-spacing: 0.2em; color: var(--stone);
     font-family: 'Jost', sans-serif; font-weight: 400; text-transform: uppercase; margin-top: 2px;
@@ -472,7 +478,7 @@
     font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
     color: var(--stone); text-decoration: none; transition: color 0.2s;
   }
-  .footer-links a:hover { color: var(--gold); }
+  .footer-links a:hover { color: var(--scarlet-light); }
   .footer-credit {
     background: #0a0808; text-align: center; padding: 0.75rem;
     font-size: 0.7rem; color: var(--stone); letter-spacing: 0.06em;
@@ -486,14 +492,14 @@
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
-    .hero-brand { font-size: clamp(2.4rem, 10vw, 3.6rem); }
+    .hero-brand { font-size: clamp(2.2rem, 9vw, 3.4rem); }
     .hero-corner { display: none; }
     .hero-stats { gap: 1.5rem; }
     .about, .contact { padding: 4rem 1.5rem; grid-template-columns: 1fr; gap: 3rem; }
     .about-img { height: 300px; }
     .services, .listings, .testimonials { padding: 4rem 1.5rem; }
     .services-grid, .listings-grid, .testi-grid { grid-template-columns: 1fr; }
-    .why-strip { grid-template-columns: 1fr 1fr; }
+    .why-strip { grid-template-columns: 1fr 1fr; padding: 2.5rem 1.5rem; }
     .why-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
     .form-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
@@ -507,8 +513,8 @@
 <!-- NAV -->
 <nav id="mainNav">
   <a class="nav-logo" href="#">
-    Chaudhari <span class="empire">Empire</span>
-    <span class="nav-logo-sub">Developers · Panvel</span>
+    <span class="scarlet">Scarlet</span> Builders
+    <span class="nav-logo-sub">& Developers · Navi Mumbai</span>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -516,7 +522,7 @@
     <li><a href="#listings">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="tel:08828890990" class="nav-cta">Call Us</a>
+  <a href="tel:09870055044" class="nav-cta">Call Us</a>
 </nav>
 
 <!-- HERO -->
@@ -525,22 +531,23 @@
     src="https://res.cloudinary.com/dyjafr3do/video/upload/v1779828751/hero_realty_fwrsmj.mp4">
   </video>
   <div class="hero-overlay"></div>
+  <div class="hero-vignette"></div>
   <div class="hero-corner tl"></div>
   <div class="hero-corner tr"></div>
   <div class="hero-corner bl"></div>
   <div class="hero-corner br"></div>
   <div class="hero-content">
-    <div class="hero-pre">Est. in Panvel &nbsp;·&nbsp; Quality Homes for Every Family</div>
-    <div class="hero-brand">Chaudhari<br><span class="empire">Empire</span></div>
+    <div class="hero-pre">Est. in Navi Mumbai &nbsp;·&nbsp; Quality Homes for Every Family</div>
+    <div class="hero-brand"><span class="scarlet">Scarlet</span><br>Builders</div>
     <div class="hero-ornament">
       <div class="hero-ornament-line"></div>
       <div class="hero-ornament-diamond"></div>
       <div class="hero-ornament-line"></div>
     </div>
-    <div class="hero-brand-tag">Developers &nbsp;·&nbsp; Panvel, Maharashtra</div>
+    <div class="hero-brand-tag">Builders & Developers &nbsp;·&nbsp; Navi Mumbai, Maharashtra</div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-num">5.0</div>
+        <div class="hero-stat-num">4.0</div>
         <div class="hero-stat-label">Google Rating</div>
       </div>
       <div class="hero-stat">
@@ -549,7 +556,7 @@
       </div>
       <div class="hero-stat">
         <div class="hero-stat-num">✓</div>
-        <div class="hero-stat-label">Budget Homes</div>
+        <div class="hero-stat-label">Quality Homes</div>
       </div>
     </div>
   </div>
@@ -559,19 +566,19 @@
 <div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item"><span class="marquee-dot"></span> Residential Projects</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Top-Notch Build Quality</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Financial Plan Support</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Panvel · Navi Mumbai</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Best Budget Homes</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Quality Construction</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Sector 42, Navi Mumbai</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Ira Emerald Complex</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Trusted by Families</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Exceptional Build Quality</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Premium Fittings</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Honest Builders</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Residential Projects</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Top-Notch Build Quality</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Financial Plan Support</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Panvel · Navi Mumbai</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Best Budget Homes</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Quality Construction</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Sector 42, Navi Mumbai</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Ira Emerald Complex</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Trusted by Families</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Exceptional Build Quality</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Premium Fittings</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Honest Builders</span>
   </div>
 </div>
 
@@ -579,13 +586,13 @@
 <section class="about" id="about">
   <div class="reveal">
     <div class="section-tag">Our Story</div>
-    <h2 class="section-title">Built with Care,<br><em>Delivered with Pride</em></h2>
-    <p class="about-body">Chaudhari Empire Developers has been building quality homes in Panvel and Navi Mumbai that families are proud to call their own. From the very first consultation to the final handover, our team is committed to transparency, professionalism, and build quality that exceeds expectations.</p>
-    <p class="about-body">We go beyond construction — we support you through financial planning, guide you at every step, and ensure every fitting and finish meets the highest standards. Your dream home is our mission.</p>
+    <h2 class="section-title">Built with Integrity,<br><em>Delivered with Pride</em></h2>
+    <p class="about-body">Scarlet Builders & Developers has been crafting quality residential properties in Navi Mumbai with a commitment to honest construction, premium fittings, and a smooth experience for every homebuyer. Our work speaks through the satisfaction of the families living in our homes.</p>
+    <p class="about-body">We stand for transparent dealings, reliable construction timelines, and builds that stand the test of time. From your first enquiry to the final handover, our team is with you every step of the way.</p>
     <div class="about-details">
       <div class="about-detail">
         <span class="about-detail-label">Speciality</span>
-        <span class="about-detail-val">Budget Homes</span>
+        <span class="about-detail-val">Residential Homes</span>
       </div>
       <div class="about-detail">
         <span class="about-detail-label">Build Quality</span>
@@ -593,50 +600,50 @@
       </div>
       <div class="about-detail">
         <span class="about-detail-label">Phone</span>
-        <span class="about-detail-val">088288 90990</span>
+        <span class="about-detail-val">098700 55044</span>
       </div>
       <div class="about-detail">
         <span class="about-detail-label">Location</span>
-        <span class="about-detail-val">Panvel, MH</span>
+        <span class="about-detail-val">Sector 42, Navi Mumbai</span>
       </div>
     </div>
   </div>
   <div class="about-img reveal" style="transition-delay:0.15s">
-    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80" alt="Chaudhari Empire building">
+    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80" alt="Scarlet Builders building">
     <div class="about-img-line"></div>
     <div class="about-img-line-2"></div>
   </div>
 </section>
 
-<!-- SERVICES — dark, prominent -->
+<!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-header reveal">
     <div>
       <div class="section-tag">What We Offer</div>
       <h2 class="section-title">Our <em>Services</em></h2>
     </div>
-    <a href="#contact" class="btn-ghost" style="color:rgba(250,246,239,0.45); border-color:rgba(250,246,239,0.2);">Get in touch →</a>
+    <a href="#contact" class="btn-ghost" style="color:rgba(250,245,244,0.45); border-color:rgba(250,245,244,0.2);">Get in touch →</a>
   </div>
   <div class="services-grid">
 
     <div class="service-card reveal">
       <span class="service-num">01</span>
       <div class="service-name">Residential Development</div>
-      <p class="service-desc">We develop quality residential complexes tailored for families looking for comfort, value, and lasting build quality — all within the best budget in Panvel and Navi Mumbai.</p>
+      <p class="service-desc">We develop quality residential complexes designed for comfortable family living — with premium fittings, thoughtful layouts, and construction that prioritises durability across Navi Mumbai.</p>
       <a href="#contact" class="service-link">Enquire <span class="service-link-arrow">→</span></a>
     </div>
 
     <div class="service-card reveal" style="transition-delay:0.1s">
       <span class="service-num">02</span>
-      <div class="service-name">Financial Plan Support</div>
-      <p class="service-desc">Our team helps you navigate home loans, payment plans, and financing options — ensuring your journey to ownership is stress-free and financially sound from day one.</p>
+      <div class="service-name">Property Consultation</div>
+      <p class="service-desc">Our experienced team guides you through unit selection, pricing, and legal paperwork — ensuring every decision you make is informed, straightforward, and stress-free.</p>
       <a href="#contact" class="service-link">Enquire <span class="service-link-arrow">→</span></a>
     </div>
 
     <div class="service-card reveal" style="transition-delay:0.2s">
       <span class="service-num">03</span>
       <div class="service-name">End-to-End Handover</div>
-      <p class="service-desc">From initial consultation to handing you the keys, we manage every stage with full transparency and professionalism — ensuring your new home meets all expectations.</p>
+      <p class="service-desc">From booking to possession, we manage every stage transparently and professionally — so you receive your home in perfect condition, exactly as promised.</p>
       <a href="#contact" class="service-link">Enquire <span class="service-link-arrow">→</span></a>
     </div>
 
@@ -646,24 +653,24 @@
 <!-- WHY US STRIP -->
 <div class="why-strip">
   <div class="why-item reveal">
-    <div class="why-icon">🏆</div>
-    <div class="why-label">5-Star Rated</div>
-    <div class="why-desc">Consistently rated 5.0 on Google by our homeowners.</div>
+    <div class="why-icon">🏗️</div>
+    <div class="why-label">Quality Built</div>
+    <div class="why-desc">Premium materials and skilled craftsmanship in every project.</div>
   </div>
   <div class="why-item reveal" style="transition-delay:0.1s">
-    <div class="why-icon">💼</div>
-    <div class="why-label">Budget-First</div>
-    <div class="why-desc">Best value homes in Panvel without compromising on quality.</div>
+    <div class="why-icon">📍</div>
+    <div class="why-label">Prime Location</div>
+    <div class="why-desc">Properties in Sector 42, Navi Mumbai — well connected and accessible.</div>
   </div>
   <div class="why-item reveal" style="transition-delay:0.2s">
     <div class="why-icon">🤝</div>
-    <div class="why-label">Full Transparency</div>
-    <div class="why-desc">Clear pricing, honest timelines, and open communication throughout.</div>
+    <div class="why-label">Honest Dealings</div>
+    <div class="why-desc">Clear pricing, open communication, no hidden surprises.</div>
   </div>
   <div class="why-item reveal" style="transition-delay:0.3s">
     <div class="why-icon">🔑</div>
     <div class="why-label">Smooth Handover</div>
-    <div class="why-desc">Seamless handover process with zero hassle for the buyer.</div>
+    <div class="why-desc">Seamless possession process with full buyer support.</div>
   </div>
 </div>
 
@@ -683,8 +690,8 @@
         <span class="listing-tag-chip">Available</span>
       </div>
       <div class="listing-body">
-        <div class="listing-price">Best Budget</div>
-        <div class="listing-name">1 BHK Apartment · Panvel, Navi Mumbai</div>
+        <div class="listing-price">Competitive Price</div>
+        <div class="listing-name">1 BHK Apartment · Sector 42, Navi Mumbai</div>
         <div class="listing-specs">
           <span>🛏 1 Bed</span><span>🚿 1 Bath</span><span>🏗️ Quality Fittings</span>
         </div>
@@ -696,10 +703,10 @@
         <span class="listing-tag-chip">Available</span>
       </div>
       <div class="listing-body">
-        <div class="listing-price">Affordable Price</div>
-        <div class="listing-name">2 BHK Apartment · Panvel, Navi Mumbai</div>
+        <div class="listing-price">Enquire for Price</div>
+        <div class="listing-name">2 BHK Apartment · Ira Emerald, Navi Mumbai</div>
         <div class="listing-specs">
-          <span>🛏 2 Beds</span><span>🚿 2 Baths</span><span>🏗️ Top-Notch Build</span>
+          <span>🛏 2 Beds</span><span>🚿 2 Baths</span><span>🏗️ Premium Build</span>
         </div>
       </div>
     </div>
@@ -710,7 +717,7 @@
       </div>
       <div class="listing-body">
         <div class="listing-price">Call for Price</div>
-        <div class="listing-name">Premium Flat · Chaudhari Empire Complex</div>
+        <div class="listing-name">Premium Flat · Ira Emerald Complex</div>
         <div class="listing-specs">
           <span>🛏 2+ Beds</span><span>🚿 2 Baths</span><span>🏗️ Premium Finish</span>
         </div>
@@ -728,46 +735,46 @@
   <div class="testi-grid">
     <div class="testi-card reveal" style="transition-delay:0.05s">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"I am really happy with Chaudhari Empire Developers! The team provided excellent support with the financial plan and ensured the build quality and fittings were top-notch. It feels great to have a home that meets all our expectations."</p>
+      <p class="testi-text">"Very nice experience with Scarlet Builders & Developers. The team is professional and the build quality is genuinely impressive. Would recommend to any family looking for a home in Navi Mumbai."</p>
       <div class="testi-author">
-        <div class="testi-avatar">VG</div>
+        <div class="testi-avatar">RY</div>
         <div>
-          <div class="testi-name">Vipul Ghag</div>
-          <div class="testi-role">Homeowner · Panvel</div>
+          <div class="testi-name">Ramchandra Yadav</div>
+          <div class="testi-role">Homeowner · Navi Mumbai</div>
         </div>
       </div>
     </div>
     <div class="testi-card reveal" style="transition-delay:0.15s">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"From the initial consultation to the final handover, the team demonstrated exceptional professionalism, transparency, and commitment to quality. An absolutely delightful experience. Highly recommended."</p>
+      <p class="testi-text">"Nice experience and good quality work and service. The team was cooperative throughout and the entire process was smooth and pleasant from start to finish."</p>
       <div class="testi-author">
-        <div class="testi-avatar">OR</div>
+        <div class="testi-avatar">AS</div>
         <div>
-          <div class="testi-name">Omprakash Rathod</div>
+          <div class="testi-name">Amit Shinde</div>
           <div class="testi-role">Homeowner · Navi Mumbai</div>
         </div>
       </div>
     </div>
     <div class="testi-card reveal" style="transition-delay:0.25s">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"It's a lovely complex and the builder is very friendly and helpful. Best budget home you can find in Panvel. The team is cooperative and made the entire process smooth and pleasant."</p>
+      <p class="testi-text">"Excellent builders. The location and planning of the project is very thoughtful. Happy with the service and overall experience with the Scarlet team."</p>
       <div class="testi-author">
-        <div class="testi-avatar">RB</div>
+        <div class="testi-avatar">JK</div>
         <div>
-          <div class="testi-name">Reena Bandekar</div>
-          <div class="testi-role">Homeowner · Panvel</div>
+          <div class="testi-name">Jafar Khan</div>
+          <div class="testi-role">Resident · Navi Mumbai</div>
         </div>
       </div>
     </div>
   </div>
   <div class="testi-meta reveal">
     <div class="testi-meta-item">
-      <div class="testi-meta-num">5.0</div>
+      <div class="testi-meta-num">4.0</div>
       <div class="testi-meta-label">Google Rating</div>
     </div>
     <div class="testi-meta-item">
       <div class="testi-meta-num">100%</div>
-      <div class="testi-meta-label">5-Star Reviews</div>
+      <div class="testi-meta-label">Satisfied Buyers</div>
     </div>
     <div class="testi-meta-item">
       <div class="testi-meta-num">∞</div>
@@ -785,14 +792,14 @@
       <div class="contact-detail-icon">📞</div>
       <div>
         <div class="contact-detail-label">Phone</div>
-        <div class="contact-detail-val"><a href="tel:08828890990">088288 90990</a></div>
+        <div class="contact-detail-val"><a href="tel:09870055044">098700 55044</a></div>
       </div>
     </div>
     <div class="contact-detail">
       <div class="contact-detail-icon">📍</div>
       <div>
         <div class="contact-detail-label">Location</div>
-        <div class="contact-detail-val">Chaudhari Empire Complex,<br>Panvel, Navi Mumbai, Maharashtra</div>
+        <div class="contact-detail-val">Plot No. 3, Second Floor, Ira Emerald,<br>Sector 42, Navi Mumbai,<br>Maharashtra 400706</div>
       </div>
     </div>
     <div class="contact-detail">
@@ -807,7 +814,7 @@
       <div class="contact-detail-icon">🗺</div>
       <div>
         <div class="contact-detail-label">Area Served</div>
-        <div class="contact-detail-val">Panvel · Navi Mumbai<br>and surrounding regions</div>
+        <div class="contact-detail-val">Navi Mumbai · Sector 42<br>and surrounding regions</div>
       </div>
     </div>
   </div>
@@ -834,36 +841,35 @@
         <option>Buying a Flat / Apartment</option>
         <option>1 BHK Unit</option>
         <option>2 BHK Unit</option>
-        <option>Financial Plan Enquiry</option>
+        <option>Site Visit Request</option>
         <option>General Enquiry</option>
       </select>
     </div>
     <div class="form-group">
       <label for="msg">Message</label>
-      <textarea id="msg" placeholder="Tell us about your requirements — budget, flat type, location preferences..."></textarea>
+      <textarea id="msg" placeholder="Tell us about your requirements — budget, flat type, preferred location..."></textarea>
     </div>
-    <!-- botcheck honeypot for SplitForms spam protection -->
     <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
     <button class="form-submit" id="submitBtn" onclick="handleSubmit()">Send Enquiry →</button>
     <div id="form-error" style="display:none; margin-top:0.8rem; font-size:0.78rem; color:#c0392b; letter-spacing:0.04em;"></div>
-    <div class="form-success" id="form-success">Your form has been submitted successfully. We will contact you shortly.</div>
+    <div class="form-success" id="form-success">Your enquiry has been submitted successfully. We will contact you shortly.</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    Chaudhari <span class="empire">Empire</span>
-    <span class="footer-logo-sub">Developers · Panvel</span>
+    <span class="scarlet">Scarlet</span> Builders
+    <span class="footer-logo-sub">& Developers · Navi Mumbai</span>
   </div>
-  <div class="footer-copy">© 2025 Chaudhari Empire Developers. All rights reserved.</div>
+  <div class="footer-copy">© 2025 Scarlet Builders & Developers. All rights reserved.</div>
   <ul class="footer-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </footer>
-<div class="footer-credit">Panvel · Navi Mumbai · Maharashtra</div>
+<div class="footer-credit">Sector 42 · Navi Mumbai · Maharashtra 400706</div>
 
 <script>
   const nav = document.getElementById('mainNav');
