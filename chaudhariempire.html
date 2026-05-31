@@ -842,6 +842,8 @@
       <label for="msg">Message</label>
       <textarea id="msg" placeholder="Tell us about your requirements — budget, flat type, location preferences..."></textarea>
     </div>
+    <!-- botcheck honeypot for SplitForms spam protection -->
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
     <button class="form-submit" id="submitBtn" onclick="handleSubmit()">Send Enquiry →</button>
     <div id="form-error" style="display:none; margin-top:0.8rem; font-size:0.78rem; color:#c0392b; letter-spacing:0.04em;"></div>
     <div class="form-success" id="form-success">Your form has been submitted successfully. We will contact you shortly.</div>
@@ -908,19 +910,30 @@
     submitBtn.textContent = 'Sending…';
 
     try {
-      const response = await fetch('https://formspree.io/f/xkoeerkr', {
+      const response = await fetch('https://splitforms.com/api/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name, phone, interest, message: msg || 'No message' })
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'a5e724b070014506988ff0caea1625c5',
+          name: name,
+          phone: phone,
+          interest: interest,
+          message: msg || 'No message',
+          botcheck: ''
+        })
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success !== false) {
         fnameEl.value = ''; document.getElementById('lname').value = '';
         phoneEl.value = ''; interestEl.value = ''; document.getElementById('msg').value = '';
         successEl.style.display = 'block';
       } else {
-        const data = await response.json();
-        throw new Error(data.error || 'Submission failed. Please try again.');
+        throw new Error(data.message || 'Submission failed. Please try again.');
       }
     } catch (err) {
       errorEl.textContent = err.message || 'Something went wrong. Please try again.';
