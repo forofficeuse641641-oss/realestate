@@ -212,7 +212,7 @@
   /* SERVICES */
   .services {
     background: var(--ink);
-    padding: 6rem 4rem;
+    padding: 3.5rem 4rem 6rem;
     position: relative;
     overflow: hidden;
   }
@@ -322,7 +322,7 @@
     display: none;
     justify-content: center;
     gap: 0.5rem;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
   }
   .scroll-dot {
     width: 8px; height: 8px; border-radius: 50%;
@@ -330,10 +330,31 @@
     transition: background 0.2s, transform 0.2s; padding: 0;
   }
   .scroll-dot.active { background: var(--gold-deep); transform: scale(1.2); }
+
+  /* Mobile left/right nav arrows for listings */
+  .listings-nav-row {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.2rem;
+  }
+  .listings-nav-btn {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border);
+    background: var(--warm-white);
+    color: var(--gold-deep);
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.2s, border-color 0.2s;
+    border-radius: 0;
+  }
+  .listings-nav-btn:active { background: var(--cream); border-color: var(--gold); }
+
   .listings-scroll-btn-wrap {
     display: none;
     justify-content: center;
-    margin-top: 1.5rem;
+    margin-top: 1.4rem;
   }
   .listings-enquire-btn {
     background: var(--gold-deep); color: var(--warm-white);
@@ -343,6 +364,20 @@
     transition: background 0.3s; text-decoration: none; display: inline-block;
   }
   .listings-enquire-btn:hover { background: var(--gold-dark); }
+
+  /* Testimonial dots (mobile) */
+  .testi-dots {
+    display: none;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+  }
+  .testi-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--stone-light); border: none; padding: 0; cursor: default;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .testi-dot.active { background: var(--gold-deep); transform: scale(1.2); }
 
   /* TESTIMONIALS — desktop grid, mobile auto-scroller */
   .testimonials { background: var(--warm-white); padding: 6rem 4rem; overflow: hidden; }
@@ -528,7 +563,14 @@
       scroll-snap-align: center;
     }
     .listings-scroll-dots { display: flex; }
+    .listings-nav-row { display: flex; }
     .listings-scroll-btn-wrap { display: flex; }
+    .testi-dots { display: flex; }
+    /* Center listings header on mobile */
+    .listings-header { align-items: center; text-align: center; }
+    .listings-header > div { width: 100%; }
+    .listings-header .section-tag { justify-content: center; }
+    .listings-header .section-tag::before { display: none; }
 
     /* ── Testimonials: auto-scroller on mobile ── */
     .testi-grid {
@@ -667,7 +709,6 @@
       <div class="section-tag">What We Offer</div>
       <h2 class="section-title">Our <em>Services</em></h2>
     </div>
-    <a href="#contact" class="btn-ghost" style="color:rgba(250,246,239,0.45); border-color:rgba(250,246,239,0.2);">Get in touch →</a>
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
@@ -747,6 +788,11 @@
     <button class="scroll-dot" onclick="scrollToCard(1)"></button>
     <button class="scroll-dot" onclick="scrollToCard(2)"></button>
   </div>
+  <!-- Mobile left/right nav arrows -->
+  <div class="listings-nav-row">
+    <button class="listings-nav-btn" onclick="listingNavPrev()" aria-label="Previous">&#8592;</button>
+    <button class="listings-nav-btn" onclick="listingNavNext()" aria-label="Next">&#8594;</button>
+  </div>
   <!-- Mobile enquire button -->
   <div class="listings-scroll-btn-wrap">
     <a href="#contact" class="listings-enquire-btn">Enquire About Projects →</a>
@@ -793,6 +839,12 @@
         </div>
       </div>
     </div>
+  </div>
+  <!-- Mobile testi dots -->
+  <div class="testi-dots" id="testiDots">
+    <span class="testi-dot active"></span>
+    <span class="testi-dot"></span>
+    <span class="testi-dot"></span>
   </div>
   <div class="testi-meta reveal">
     <div class="testi-meta-item">
@@ -911,25 +963,39 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  /* ── Listings scroll dots ── */
+  /* ── Listings scroll dots & arrows ── */
   const grid = document.getElementById('listingsGrid');
   const dots = document.querySelectorAll('.scroll-dot');
+  let currentCardIndex = 0;
+
+  function getCards() { return grid ? grid.querySelectorAll('.listing-card') : []; }
 
   function scrollToCard(index) {
-    const cards = grid.querySelectorAll('.listing-card');
-    if (cards[index]) {
-      grid.scrollTo({ left: cards[index].offsetLeft - 16, behavior: 'smooth' });
-    }
+    const cards = getCards();
+    if (!cards[index]) return;
+    currentCardIndex = index;
+    grid.scrollTo({ left: cards[index].offsetLeft - 16, behavior: 'smooth' });
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  function listingNavPrev() {
+    const cards = getCards();
+    scrollToCard(Math.max(0, currentCardIndex - 1));
+  }
+  function listingNavNext() {
+    const cards = getCards();
+    scrollToCard(Math.min(cards.length - 1, currentCardIndex + 1));
   }
 
   if (grid) {
     grid.addEventListener('scroll', () => {
-      const cards = grid.querySelectorAll('.listing-card');
+      const cards = getCards();
       let closest = 0, minDist = Infinity;
       cards.forEach((card, i) => {
         const dist = Math.abs(card.offsetLeft - grid.scrollLeft - 16);
         if (dist < minDist) { minDist = dist; closest = i; }
       });
+      currentCardIndex = closest;
       dots.forEach((d, i) => d.classList.toggle('active', i === closest));
     });
   }
@@ -940,6 +1006,11 @@
 
   function isMobile() { return window.innerWidth <= 900; }
 
+  function updateTestiDots(index) {
+    const allDots = document.querySelectorAll('.testi-dot');
+    allDots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
   function startTestiAutoScroll() {
     if (!isMobile()) return;
     testiInterval = setInterval(() => {
@@ -947,7 +1018,6 @@
       const cards = testiGrid.querySelectorAll('.testi-card');
       if (!cards.length) return;
       testiIndex = (testiIndex + 1) % cards.length;
-      // Animate: slide out current, slide in next
       cards.forEach((card, i) => {
         card.style.transition = 'transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s';
         if (i === testiIndex) {
@@ -962,6 +1032,7 @@
           card.style.zIndex = '0';
         }
       });
+      updateTestiDots(testiIndex);
     }, 3200);
   }
 
@@ -970,7 +1041,6 @@
     if (!testiGrid) return;
     const cards = testiGrid.querySelectorAll('.testi-card');
     if (!isMobile()) {
-      // Reset desktop
       cards.forEach(card => {
         card.style.transform = '';
         card.style.opacity = '';
@@ -992,6 +1062,7 @@
       card.style.transition = 'none';
     });
     testiIndex = 0;
+    updateTestiDots(0);
     if (testiInterval) clearInterval(testiInterval);
     startTestiAutoScroll();
   }
