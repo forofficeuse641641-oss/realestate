@@ -69,8 +69,8 @@
     .hamburger.open .bar3 { transform: translateY(-7px) rotate(-45deg); }
     .typewriter-text {
       color: black; margin-bottom: 1.25rem;
-      font-size: clamp(18px, 4vw, 26px); line-height: 1.35;
-      font-weight: 400; min-height: 54px; font-family: var(--font-body);
+      font-size: clamp(22px, 5vw, 32px); line-height: 1.35;
+      font-weight: 400; min-height: 65px; font-family: var(--font-body);
       letter-spacing: -0.01em; will-change: contents;
     }
     @media(min-width:640px) { .typewriter-text { margin-bottom: 1.5rem; } }
@@ -433,7 +433,7 @@
     <p class="trial-description" style="margin-top: 1.5rem;">
       It's the easiest way to get your business online, risk-free.
     </p>
-    <a href="mailto:hello@codersverse.co?subject=3-Month%20Trial%20Website" class="trial-button">Get Your Trial Website</a>
+    <a href="#contact" class="trial-button">Get Your Trial Website</a>
   </div>
 </section>
 
@@ -536,7 +536,7 @@
   </div>
   
   <!-- Footer -->
-  <footer style="margin-top: 6rem; padding-top: 3rem; border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; gap: 2rem; margin-left: auto; margin-right: auto;">
+  <footer style="margin-top: 2rem; padding: 1.5rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-left: auto; margin-right: auto;">
     <div style="display: flex; gap: 2rem; align-items: center;">
       <a href="https://www.instagram.com/coders.verse/" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-size: 15px; transition: opacity 0.2s;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -547,7 +547,7 @@
         Email
       </a>
     </div>
-    <p style="font-size: 12px; color: rgba(255, 255, 255, 0.4);">&copy; 2026 CodersVerse. All rights reserved.</p>
+    <p style="font-size: 12px; color: rgba(255, 255, 255, 0.4); margin: 0;">&copy; 2026 CodersVerse. All rights reserved.</p>
   </footer>
 </section>
 
@@ -773,8 +773,8 @@
     requestAnimationFrame(renderLoop);
   }
 
-  function startTypewriter() {
-    const text = "Glad you stopped in. Good taste tends to find us. Now, what are we building?";
+    function startTypewriter() {
+    const text = "We create stunning websites that help businesses attract, engage, and convert customers.";
     const el = document.getElementById('typewriterText');
     const cursor = document.getElementById('cursor');
     let idx = 0;
