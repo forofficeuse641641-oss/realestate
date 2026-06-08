@@ -77,6 +77,34 @@
 
 
 
+    /* Looping underline for "stunning websites" */
+    @keyframes swipe-underline {
+      0%   { transform: scaleX(0); transform-origin: left center; opacity: 1; }
+      45%  { transform: scaleX(1); transform-origin: left center; opacity: 1; }
+      55%  { transform: scaleX(1); transform-origin: left center; opacity: 1; }
+      80%  { transform: scaleX(0); transform-origin: right center; opacity: 1; }
+      100% { transform: scaleX(0); transform-origin: right center; opacity: 0; }
+    }
+    .underline-word {
+      position: relative;
+      display: inline;
+      white-space: nowrap;
+    }
+    .underline-word::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 2px;
+      background: #000;
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      animation: swipe-underline 2.8s ease-in-out infinite;
+      animation-delay: 1.2s;
+    }
+
     .logo-text { font-family: var(--font-heading); font-size: 21px; letter-spacing: -0.02em; color: black; }
     @media(min-width:640px) { .logo-text { font-size: 26px; } }
     .nav-link { font-size: 23px; color: black; text-decoration: none; transition: opacity 0.2s; }
@@ -777,25 +805,40 @@
   }
 
   function startTypewriter() {
-    const text = "We create stunning websites that help businesses attract, engage, and convert customers.";
+    const before = "We create ";
+    const keyword = "stunning websites";
+    const after = " that help businesses attract, engage, and convert customers.";
+    const fullText = before + keyword + after;
+
     const el = document.getElementById('typewriterText');
     const cursor = document.getElementById('cursor');
     let idx = 0;
-    
+
     function type() {
-      if (idx < text.length) {
+      if (idx < fullText.length) {
         idx++;
-        el.textContent = text.slice(0, idx);
+        const typed = fullText.slice(0, idx);
+
+        if (idx <= before.length) {
+          el.innerHTML = typed;
+        } else if (idx <= before.length + keyword.length) {
+          const keywordTyped = typed.slice(before.length);
+          el.innerHTML = before + '<span class="underline-word">' + keywordTyped + '</span>';
+        } else {
+          const afterTyped = typed.slice(before.length + keyword.length);
+          el.innerHTML = before + '<span class="underline-word">' + keyword + '</span>' + afterTyped;
+        }
+
         let delay = 35 + (Math.random() * 10 - 5);
-        if ('.?'.includes(text[idx-1])) delay += 150;
-        else if (text[idx-1] === ',') delay += 80;
+        if ('.?'.includes(fullText[idx - 1])) delay += 150;
+        else if (fullText[idx - 1] === ',') delay += 80;
         setTimeout(type, delay);
       } else {
         cursor.style.transition = 'opacity 0.5s';
         cursor.style.opacity = '0';
       }
     }
-    
+
     type();
   }
 
