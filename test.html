@@ -69,11 +69,14 @@
     .hamburger.open .bar3 { transform: translateY(-7px) rotate(-45deg); }
     .typewriter-text {
       color: black; margin-bottom: 1.25rem;
-      font-size: clamp(18px, 4vw, 26px); line-height: 1.35;
-      font-weight: 400; min-height: 54px; font-family: var(--font-body);
+      font-size: clamp(22px, 5vw, 32px); line-height: 1.35;
+      font-weight: 400; min-height: 65px; font-family: var(--font-body);
       letter-spacing: -0.01em; will-change: contents;
     }
     @media(min-width:640px) { .typewriter-text { margin-bottom: 1.5rem; } }
+
+
+
     .logo-text { font-family: var(--font-heading); font-size: 21px; letter-spacing: -0.02em; color: black; }
     @media(min-width:640px) { .logo-text { font-size: 26px; } }
     .nav-link { font-size: 23px; color: black; text-decoration: none; transition: opacity 0.2s; }
@@ -774,7 +777,7 @@
   }
 
   function startTypewriter() {
-    const text = "Glad you stopped in. Good taste tends to find us. Now, what are we building?";
+    const text = "We create stunning websites that help businesses attract, engage, and convert customers.";
     const el = document.getElementById('typewriterText');
     const cursor = document.getElementById('cursor');
     let idx = 0;
