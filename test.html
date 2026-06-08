@@ -77,6 +77,18 @@
 
 
 
+    /* Bounce wave for individual letters */
+    @keyframes letter-bounce {
+      0%, 100% { transform: translateY(0); }
+      45%       { transform: translateY(-3px); }
+    }
+    .bounce-letter {
+      display: inline-block;
+    }
+    .bounce-letter.animating {
+      animation: letter-bounce 0.9s ease forwards;
+    }
+
     /* Looping underline for "stunning websites" */
     @keyframes swipe-underline {
       0%   { transform: scaleX(0); transform-origin: left center; opacity: 1; }
@@ -814,6 +826,13 @@
     const cursor = document.getElementById('cursor');
     let idx = 0;
 
+    function buildKeywordHtml(chars) {
+      return chars.split('').map((ch, i) => {
+        if (ch === ' ') return ' ';
+        return `<span class="bounce-letter" data-idx="${i}">${ch}</span>`;
+      }).join('');
+    }
+
     function type() {
       if (idx < fullText.length) {
         idx++;
@@ -823,10 +842,10 @@
           el.innerHTML = typed;
         } else if (idx <= before.length + keyword.length) {
           const keywordTyped = typed.slice(before.length);
-          el.innerHTML = before + '<span class="underline-word">' + keywordTyped + '</span>';
+          el.innerHTML = before + '<span class="underline-word">' + buildKeywordHtml(keywordTyped) + '</span>';
         } else {
           const afterTyped = typed.slice(before.length + keyword.length);
-          el.innerHTML = before + '<span class="underline-word">' + keyword + '</span>' + afterTyped;
+          el.innerHTML = before + '<span class="underline-word">' + buildKeywordHtml(keyword) + '</span>' + afterTyped;
         }
 
         let delay = 35 + (Math.random() * 10 - 5);
@@ -836,7 +855,26 @@
       } else {
         cursor.style.transition = 'opacity 0.5s';
         cursor.style.opacity = '0';
+        // Start the wave loop after a short pause
+        setTimeout(startBounceLoop, 600);
       }
+    }
+
+    function startBounceLoop() {
+      function runWave() {
+        const letters = document.querySelectorAll('.bounce-letter');
+        letters.forEach((el, i) => {
+          setTimeout(() => {
+            el.classList.remove('animating');
+            void el.offsetWidth; // reflow to restart animation
+            el.classList.add('animating');
+          }, i * 100);
+        });
+        // Loop again after wave completes + pause
+        const totalDuration = letters.length * 100 + 900 + 3000;
+        setTimeout(runWave, totalDuration);
+      }
+      runWave();
     }
 
     type();
