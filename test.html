@@ -61,7 +61,8 @@
     }
 
     /* ===== NAV ===== */
-    .logo-text { font-family: var(--font-heading); font-size: 21px; letter-spacing: -0.02em; color: black; }
+    /* CHANGE 3: mobile logo/nav text increased 20% (was 21px → 25.2px) */
+    .logo-text { font-family: var(--font-heading); font-size: 25.2px; letter-spacing: -0.02em; color: black; }
     @media(min-width:640px) { .logo-text { font-size: 22px; } }
     .nav-link {
       font-size: 15px; color: #333; text-decoration: none;
@@ -77,6 +78,11 @@
       white-space: nowrap;
     }
     .nav-cta-btn:hover { background: #000; transform: translateY(-1px); }
+
+    /* CHANGE 3: mobile nav CTA font size increased 20% (was 14px → 16.8px) */
+    @media (max-width: 767px) {
+      .nav-cta-btn { font-size: 16.8px; }
+    }
 
     /* ===== MOBILE OVERLAY NAV ===== */
     .mobile-overlay {
@@ -151,7 +157,6 @@
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.12);
       border-radius: 9999px; padding: 0.3rem 0.9rem;
-      /* increased by 10%: was 12px → 13.2px, was 11px → 12.1px */
       font-size: 13.2px; font-family: var(--font-body);
       color: #222; margin-bottom: 1.25rem; backdrop-filter: blur(4px);
     }
@@ -172,13 +177,14 @@
       font-weight: 500;
       margin-bottom: 1.25rem;
     }
-    /* golden beige / muted sand accent for "convert" */
+    /* CHANGE 1: soft brown for "convert" accent */
     .hero-headline .accent {
-      color: #c8b89a;
+      color: #8B6347;
       font-style: italic;
     }
+    /* CHANGE 2: mobile tagline increased 30% (clamp 32px→41.6px, 9vw→11.7vw, 48px→62.4px) */
     @media (max-width: 767px) {
-      .hero-headline { font-size: clamp(32px, 9vw, 48px); margin-bottom: 1rem; }
+      .hero-headline { font-size: clamp(41.6px, 11.7vw, 62.4px); margin-bottom: 1rem; }
     }
 
     /* ===== HERO SUBTEXT ===== */
@@ -248,7 +254,6 @@
     }
 
     /* ===== RECENT PROJECTS SECTION ===== */
-    /* Changed background to dark/black like services section */
     .recent-projects-section {
       background: #0a0a0a; color: #fff; padding: 5rem 2rem;
       position: relative; z-index: 10;
@@ -267,25 +272,36 @@
       font-family: var(--font-heading); font-size: clamp(24px, 4vw, 40px);
       font-weight: 500; letter-spacing: -0.02em; color: #fff; line-height: 1.1;
     }
-    .rp-view-all {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      border: 1.5px solid rgba(255,255,255,0.2); border-radius: 8px;
-      padding: 0.55rem 1.1rem; font-size: 14px; color: #fff;
-      text-decoration: none; font-family: var(--font-body);
-      transition: border-color 0.2s, background 0.2s; white-space: nowrap;
-      flex-shrink: 0; align-self: flex-end;
-    }
-    .rp-view-all:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+    /* Desktop grid */
     .rp-grid {
-      display: grid; grid-template-columns: 1fr;
-      gap: 1.25rem; max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; max-width: 1200px; margin: 0 auto;
     }
-    @media (min-width: 640px) { .rp-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+    /* Mobile swipe carousel */
+    @media (max-width: 639px) {
+      .rp-grid {
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        max-width: 100%;
+        margin: 0 -2rem;
+        padding: 0 2rem 1rem;
+        scrollbar-width: none;
+      }
+      .rp-grid::-webkit-scrollbar { display: none; }
+      .rp-grid .rp-card {
+        flex: 0 0 82vw;
+        max-width: 82vw;
+        scroll-snap-align: center;
+      }
+    }
     .rp-card {
       border-radius: 12px; overflow: hidden; position: relative;
       aspect-ratio: 4/3; cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: #1a1a1a;
+      background: #1a1a1a; text-decoration: none; display: block;
     }
     .rp-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
     .rp-card-img {
@@ -309,6 +325,13 @@
     .rp-card-bg-1 { background: linear-gradient(135deg, #2c2824, #1a1410); }
     .rp-card-bg-2 { background: linear-gradient(135deg, #1a1a1a, #0d0d0d); }
     .rp-card-bg-3 { background: linear-gradient(135deg, #1c1a14, #100e0a); }
+    /* Swipe dots — mobile only */
+    .rp-dots { display: none; }
+    @media (max-width: 639px) {
+      .rp-dots { display: flex; justify-content: center; gap: 6px; margin-top: 1rem; }
+      .rp-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.25); transition: background 0.3s, transform 0.3s; }
+      .rp-dot.active { background: #fff; transform: scale(1.3); }
+    }
 
     /* ===== SERVICES SECTION ===== */
     .services-section {
@@ -536,30 +559,31 @@
 <div id="mobile-hero-bg"></div>
 
 <!-- NAV -->
+<!-- CHANGE 4: hamburger removed on mobile; "Get in touch" CTA shown instead -->
 <nav style="position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;" id="navbar">
   <div style="display:flex;align-items:center;">
     <span class="logo-text">CodersVerse</span>
   </div>
-  <!-- Desktop nav — personalised labels -->
+  <!-- Desktop nav -->
   <div class="desktop-nav" style="display:none;flex-direction:row;align-items:center;gap:2rem;">
     <a href="#services" class="nav-link">What We Build</a>
     <a href="#recent-projects" class="nav-link">Our Work</a>
     <a href="#trial" class="nav-link">Try Risk-Free</a>
     <a href="#faq" class="nav-link">FAQ</a>
   </div>
+  <!-- Desktop CTA -->
   <a href="#contact" class="nav-cta-btn desktop-cta" style="display:none;">
     Get in touch
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
   </a>
-  <button class="hamburger mobile-menu-btn" aria-label="Toggle menu"
-    style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:4px;">
-    <span class="hamburger-bar bar1"></span>
-    <span class="hamburger-bar bar2"></span>
-    <span class="hamburger-bar bar3"></span>
-  </button>
+  <!-- Mobile CTA (replaces hamburger) -->
+  <a href="#contact" class="nav-cta-btn mobile-cta">
+    Get in touch
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  </a>
 </nav>
 
-<!-- Mobile overlay menu — personalised labels -->
+<!-- Mobile overlay menu (kept in DOM but no longer triggered) -->
 <div class="mobile-overlay" id="mobileOverlay">
   <a href="#services">What We Build</a>
   <a href="#recent-projects">Our Work</a>
@@ -571,13 +595,13 @@
 <!-- HERO -->
 <section id="hero">
   <div id="heroContent">
-    <!-- Eyebrow pill — font size increased 10% -->
+    <!-- Eyebrow pill -->
     <div class="hero-eyebrow">
       <span class="dot"></span>
       Web Development Services
     </div>
 
-    <!-- Headline — "convert" in golden beige / muted sand -->
+    <!-- Headline -->
     <h1 class="hero-headline">
       Websites that<br>
       attract, engage,<br>
@@ -591,14 +615,14 @@
 
     <!-- CTAs -->
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary">
-        Book a Free Consultation
+      <a href="#trial" class="btn-primary">
+        Get a Trial Website
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
       <a href="#recent-projects" class="btn-secondary">View Our Work</a>
     </div>
 
-    <!-- Social proof — real face photos via randomuser.me -->
+    <!-- Social proof -->
     <div class="hero-social-proof">
       <div class="avatar-stack">
         <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" />
@@ -621,37 +645,38 @@
   </div>
 </section>
 
-<!-- RECENT PROJECTS — dark background matching services section -->
+<!-- RECENT PROJECTS — CHANGE 5: "View All Projects" button removed -->
 <section class="recent-projects-section" id="recent-projects">
   <div class="rp-header">
     <div>
       <div class="rp-eyebrow">OUR WORK</div>
       <div class="rp-title">Recent Projects</div>
     </div>
-    <a href="#" class="rp-view-all">
-      View All Projects
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  </div>
+  <div class="rp-grid" id="rpGrid">
+    <a href="https://www.satbarawale.com/" target="_blank" rel="noopener" class="rp-card rp-card-bg-1">
+      <div class="rp-card-overlay">
+        <div class="rp-card-headline">SatBaraWale</div>
+        <div class="rp-card-tag">Land Real Estate &middot; Static Website &middot; Clean &amp; Lead-focused</div>
+      </div>
+    </a>
+    <a href="https://inkwell-media.pages.dev/" target="_blank" rel="noopener" class="rp-card rp-card-bg-2">
+      <div class="rp-card-overlay">
+        <div class="rp-card-headline">InkWell Media</div>
+        <div class="rp-card-tag">Marketing Agency &middot; Landing Page &middot; Bold &amp; Conversion-driven</div>
+      </div>
+    </a>
+    <a href="https://a-one-gold.pages.dev/" target="_blank" rel="noopener" class="rp-card rp-card-bg-3">
+      <div class="rp-card-overlay">
+        <div class="rp-card-headline">A1 Gold</div>
+        <div class="rp-card-tag">Gold Ornaments Manufacturing &middot; Portfolio &middot; Elegant &amp; Timeless</div>
+      </div>
     </a>
   </div>
-  <div class="rp-grid">
-    <div class="rp-card rp-card-bg-1">
-      <div class="rp-card-overlay">
-        <div class="rp-card-headline">Elevating Spaces,<br>Enriching Lives</div>
-        <div class="rp-card-tag">Real Estate Website · Clean, Modern, Lead-focused</div>
-      </div>
-    </div>
-    <div class="rp-card rp-card-bg-2">
-      <div class="rp-card-overlay">
-        <div class="rp-card-headline">Stronger<br>Every Day</div>
-        <div class="rp-card-tag">Fitness Website · Bold, Energetic, Conversion-driven</div>
-      </div>
-    </div>
-    <div class="rp-card rp-card-bg-3">
-      <div class="rp-card-overlay">
-        <div class="rp-card-headline">Good food<br>Good mood</div>
-        <div class="rp-card-tag">Restaurant Website · Warm, Inviting, Easy to Navigate</div>
-      </div>
-    </div>
+  <div class="rp-dots" id="rpDots">
+    <div class="rp-dot active"></div>
+    <div class="rp-dot"></div>
+    <div class="rp-dot"></div>
   </div>
 </section>
 
@@ -1079,36 +1104,32 @@
     var w = window.innerWidth;
     var nav = document.getElementById('navbar');
     var dNavs = document.querySelectorAll('.desktop-nav,.desktop-cta');
-    var mBtn = document.querySelector('.mobile-menu-btn');
+    var mCta = document.querySelector('.mobile-cta');
     if (w >= 768) {
       nav.style.padding = '1.25rem 2rem';
       dNavs.forEach(function(el) { el.style.display = el.classList.contains('desktop-nav') ? 'flex' : 'inline-flex'; });
-      mBtn.style.display = 'none';
+      if (mCta) mCta.style.display = 'none';
     } else {
       nav.style.padding = '1rem 1.25rem';
       dNavs.forEach(function(el) { el.style.display = 'none'; });
-      mBtn.style.display = 'flex';
+      if (mCta) mCta.style.display = 'inline-flex';
     }
   }
 
-  var menuBtn = document.querySelector('.mobile-menu-btn');
-  var overlay = document.getElementById('mobileOverlay');
-  var menuOpen = false;
-  menuBtn.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    menuBtn.classList.toggle('open', menuOpen);
-    overlay.classList.toggle('open', menuOpen);
-  });
-  overlay.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      menuOpen = false;
-      menuBtn.classList.remove('open');
-      overlay.classList.remove('open');
-    });
-  });
-
   window.addEventListener('resize', applyResponsive);
   applyResponsive();
+
+  // Swipe dot sync (mobile only)
+  (function() {
+    var grid = document.getElementById('rpGrid');
+    var dots = document.querySelectorAll('#rpDots .rp-dot');
+    if (!grid || !dots.length) return;
+    grid.addEventListener('scroll', function() {
+      var cardWidth = grid.querySelector('.rp-card').offsetWidth + 16; // gap ~16px
+      var idx = Math.round(grid.scrollLeft / cardWidth);
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    }, { passive: true });
+  })();
 
   init();
   renderLoop();
